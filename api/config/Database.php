@@ -1,10 +1,10 @@
 <?php
 class Database {
-    private $host = 'dpg-d75j2o1aae7s73colnk0-a.oregon-postgres.render.com';
-    private $db_name = 'quotesdb_eh7z';
-    private $username = 'jasonwingert';
-    private $password = 'gJbkkc253XgsF6N5zldlCFbdQiNfUoJv';
-    private $port = '5432';
+    private $host = '';
+private $db_name = '';
+private $username = '';
+private $password = '';
+private $port = '5432';
     public $conn;
 
 public function connect() {
