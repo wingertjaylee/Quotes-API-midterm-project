@@ -1,19 +1,20 @@
 <?php
 class Database {
-    private $host = '';
-private $db_name = '';
-private $username = '';
-private $password = '';
-private $port = '5432';
     public $conn;
 
-public function connect() {
+    public function connect() {
         $this->conn = null;
 
         try {
-            $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->db_name};sslmode=require";
+            $host = getenv('DB_HOST');
+            $db_name = getenv('DB_NAME');
+            $username = getenv('DB_USER');
+            $password = getenv('DB_PASSWORD');
+            $port = getenv('DB_PORT') ?: '5432';
 
-            $this->conn = new PDO($dsn, $this->username, $this->password, [
+            $dsn = "pgsql:host={$host};port={$port};dbname={$db_name};sslmode=require";
+
+            $this->conn = new PDO($dsn, $username, $password, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ]);
