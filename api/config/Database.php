@@ -6,20 +6,28 @@ class Database {
         $this->conn = null;
 
         try {
-            $host = getenv('DB_HOST');
-            $db_name = getenv('DB_NAME');
-            $username = getenv('DB_USER');
-            $password = getenv('DB_PASSWORD');
-            $port = getenv('DB_PORT') ?: '5432';
+            $databaseUrl = getenv('DATABASE_URL');
 
-            $dsn = "pgsql:host={$host};port={$port};dbname={$db_name};sslmode=require";
+            if (!$databaseUrl) {
+                throw new Exception('DATABASE_URL is not set');
+            }
 
-            $this->conn = new PDO($dsn, $username, $password, [
+            $db = parse_url($databaseUrl);
+
+            $host = $db['host'] ?? '';
+            $port = $db['port'] ?? '5432';
+            $user = $db['user'] ?? '';
+            $pass = $db['pass'] ?? '';
+            $name = isset($db['path']) ? ltrim($db['path'], '/') : '';
+
+            $dsn = "pgsql:host={$host};port={$port};dbname={$name};sslmode=require";
+
+            $this->conn = new PDO($dsn, $user, $pass, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ]);
 
-        } catch (PDOException $e) {
+        } catch (Throwable $e) {
             http_response_code(500);
             echo json_encode([
                 'message' => 'Database connection failed',
