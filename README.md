@@ -7,7 +7,6 @@ Jason Wingert
 https://github.com/wingertjaylee/quotes-api
 
 ## Live Project
-(leave blank for now if not deployed yet)
 
 ## Overview
 This project is a RESTful API built with PHP and PostgreSQL. It provides endpoints to manage quotes, authors, and categories.
@@ -42,3 +41,9 @@ This project is a RESTful API built with PHP and PostgreSQL. It provides endpoin
 =======
 - API tested locally using XAMPP and Postman
 >>>>>>> 57ad905c6153d2a4261bcaa402a37008e1d37838
+
+## Notes
+
+The quotes endpoint is fully functional and connected to a PostgreSQL database hosted on Render.
+
+Due to time constraints, authors and categories endpoints may require minor routing adjustments in the deployed environment, but they function correctly in local testing.
