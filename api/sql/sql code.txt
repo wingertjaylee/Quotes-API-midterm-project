@@ -1,0 +1,34 @@
+sql code:
+CREATE TABLE authors (
+    id INT NOT NULL	AUTO_INCREMENT PRIMARY KEY,
+    author VARCHAR(255)NOT NULL
+);
+
+CREATE TABLE categories (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    category VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE quotes (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    quote TEXT NOT NULL,
+    author_id INT NOT NULL,
+    category_id INT NOT NULL,
+    FOREIGN KEY (author_id) REFERENCES authors(id),
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+INSERT INTO authors (author) VALUES
+('Oscar Wilde'),
+('Maya Angelou'),
+('Albert Einstein');
+
+INSERT INTO categories (category) VALUES
+('Inspirational'),
+('Humor'),
+('Life');
+
+INSERT INTO quotes (quote, author_id, category_id) VALUES
+('Be yourself; everyone else is already taken.', 1, 2),
+('You will face many defeats in life, but never let yourself be defeated.', 2, 1),
+('Life is like riding a bicycle, To keep your balance, you must keep moving.', 3, 3);
