@@ -36,11 +36,10 @@ This project is a RESTful API built with PHP and PostgreSQL. It provides endpoin
 
 ## Notes
 - Database hosted on Render PostgreSQL
-<<<<<<< HEAD
+
 - API tested locally using XAMPP and Postman
 =======
-- API tested locally using XAMPP and Postman
->>>>>>> 57ad905c6153d2a4261bcaa402a37008e1d37838
+
 
 ## Notes
 
